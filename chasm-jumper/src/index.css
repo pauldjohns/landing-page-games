@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Pixel-quest design system. 8-bit medieval-meets-future. All colors HSL. */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+@layer base {
+  :root {
+    --background: 230 35% 8%;
+    --foreground: 45 90% 92%;
+
+    --card: 230 30% 12%;
+    --card-foreground: 45 90% 92%;
+
+    --popover: 230 30% 14%;
+    --popover-foreground: 45 90% 92%;
+
+    --primary: 45 95% 55%;
+    --primary-foreground: 230 40% 10%;
+
+    --secondary: 175 80% 50%;
+    --secondary-foreground: 230 40% 10%;
+
+    --muted: 230 25% 18%;
+    --muted-foreground: 230 15% 65%;
+
+    --accent: 320 80% 60%;
+    --accent-foreground: 45 90% 95%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 230 25% 22%;
+    --input: 230 25% 22%;
+    --ring: 45 95% 55%;
+
+    --radius: 0.25rem;
+
+    /* Game tokens */
+    --gold: 45 95% 55%;
+    --gold-glow: 45 100% 70%;
+    --neon-cyan: 175 90% 55%;
+    --neon-pink: 320 85% 65%;
+    --medieval-grass: 110 45% 35%;
+    --medieval-sky: 210 75% 65%;
+    --stone: 220 10% 35%;
+    --chasm: 230 40% 6%;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'VT323', monospace;
+    image-rendering: pixelated;
+  }
+
+  .font-pixel { font-family: 'Press Start 2P', monospace; }
+  .font-pixel-body { font-family: 'VT323', monospace; }
+}
+
+@layer utilities {
+  .pixelated { image-rendering: pixelated; image-rendering: crisp-edges; }
+
+  .text-glow-gold {
+    text-shadow: 0 0 8px hsl(var(--gold-glow) / 0.8), 0 0 16px hsl(var(--gold) / 0.5);
+  }
+
+  .speech-bubble {
+    position: relative;
+    background: hsl(var(--popover));
+    border: 4px solid hsl(var(--foreground));
+    color: hsl(var(--popover-foreground));
+    padding: 1rem 1.25rem;
+    border-radius: 0.25rem;
+    box-shadow: 6px 6px 0 hsl(0 0% 0% / 0.6);
+  }
+  .speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    left: 32px;
+    width: 0; height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 16px solid hsl(var(--foreground));
+  }
+  .speech-bubble::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 36px;
+    width: 0; height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 12px solid hsl(var(--popover));
+    z-index: 1;
+  }
+
+  @keyframes pixel-bob {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+  }
+  .animate-bob { animation: pixel-bob 0.6s steps(2) infinite; }
+
+  @keyframes gold-pulse {
+    0%,100% { filter: brightness(1) saturate(1); }
+    50% { filter: brightness(1.3) saturate(1.5); }
+  }
+  .animate-gold-pulse { animation: gold-pulse 1.2s ease-in-out infinite; }
+
+  @keyframes flicker {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+  .animate-flicker { animation: flicker 1.5s ease-in-out infinite; }
+}
