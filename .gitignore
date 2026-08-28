@@ -35,3 +35,8 @@ yarn-error.log*
 
 # TypeScript incremental build info - generated, and stale in a fresh clone
 *.tsbuildinfo
+
+# Local configuration and secrets. The example file is the only one that ships.
+.env
+.env.*
+!.env.example
